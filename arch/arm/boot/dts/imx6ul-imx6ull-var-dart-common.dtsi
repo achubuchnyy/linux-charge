@@ -52,8 +52,8 @@
 			regulator-name = "VSD_3V3";
 			regulator-min-microvolt = <3300000>;
 			regulator-max-microvolt = <3300000>;
-			gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;	/* WL_REG_ON: SNVS_TAMPER1 (gpio1_3) */
-			enable-active-low;
+			gpio = <&gpio2 7 GPIO_ACTIVE_HIGH>;	/* WL_REG_ON: SNVS_TAMPER1 (gpio5_6) */
+			enable-active-high;
 			regulator-always-on;
 		};
 
