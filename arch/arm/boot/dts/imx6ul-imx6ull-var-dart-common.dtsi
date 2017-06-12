@@ -126,7 +126,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_enet2>;
 	phy-mode = "rmii";
-	phy-reset-gpios=<&gpio2 0 5>;
+	phy-reset-gpios=<&gpio2 5 1>;
 	phy-reset-duration=<100>;
 	phy-reset-on-resume;
 	phy-handle = <&ethphy1>;
@@ -146,7 +146,8 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		/*ethphy0: ethernet-phy@1 {
+		/*
+		ethphy0: ethernet-phy@1 {
 			compatible = "ethernet-phy-ieee802.3-c22";
 			micrel,rmii-reference-clock-select-25-mhz;
 			clocks = <&rmii_ref_clk>;
