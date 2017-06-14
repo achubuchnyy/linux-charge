@@ -329,8 +329,9 @@
 	no-3-3-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
-	non-removable;
-/*	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;*/
+	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
+/*	non-removable;
+	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;*/
 	status = "okay";
 };
 #endif
@@ -423,6 +424,26 @@
 	};
 };
 
+&ecspi1 {
+	fsl,spi-num-chipselects = <1>;
+	cs-gpios = <&gpio4 26 0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_ecspi1_1>;
+	status = "okay";
+
+        chip1: spidev@0 {
+               compatible = "spidev";
+               spi-max-frequency = <12000000>;
+               reg = <0>;
+        };
+/*
+        chip2: spidev@1 {
+               compatible = "spidev";
+               spi-max-frequency = <20000000>;
+               reg = <1>;
+	};
+*/
+};
 &iomuxc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_hog_1>;
@@ -556,8 +577,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 SD card detect */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1
+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 
+				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1 SD card detect */
 			>;
 		};
 
@@ -569,8 +590,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 SD card detect */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1
+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 /*SD card detect */
+				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1*/
 			>;
 		};
 
@@ -582,8 +603,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
-				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 SD card detect */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1
+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 /*SD card detect */
+				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1*/
 			>;
 		};
 #ifdef EMMC
@@ -666,6 +687,14 @@
 		pinctrl_wdog: wdoggrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO08__WDOG1_WDOG_B	0x78b0
+			>;
+		};
+		pinctrl_ecspi1_1: ecspi1grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_DATA07__ECSPI1_MISO	0x100b1
+				MX6UL_PAD_CSI_DATA06__ECSPI1_MOSI	0x100b1
+				MX6UL_PAD_CSI_DATA04__ECSPI1_SCLK	0x100b1
+				MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x80000000
 			>;
 		};
 	};
