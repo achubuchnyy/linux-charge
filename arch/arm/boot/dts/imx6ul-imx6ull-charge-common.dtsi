@@ -21,16 +21,18 @@
 	};
 
 	backlight {
-		compatible = "pwm-backlight";
+		/*compatible = "pwm-backlight";
 		pwms = <&pwm1 0 20000>;
 		brightness-levels = <0 4 8 16 32 64 128 255>;
 		default-brightness-level = <6>;
-		status = "okay";
+		status = "okay";*/
+ 		status = "disabled";
 	};
 
 	pxp_v4l2 {
-		compatible = "fsl,imx6ul-pxp-v4l2", "fsl,imx6sx-pxp-v4l2", "fsl,imx6sl-pxp-v4l2";
-		status = "okay";
+		/*compatible = "fsl,imx6ul-pxp-v4l2", "fsl,imx6sx-pxp-v4l2", "fsl,imx6sl-pxp-v4l2";
+		status = "okay";*/
+	 status = "disabled";
 	};
 
 	regulators {
@@ -58,7 +60,7 @@
 		};
 
 #endif
-		reg_gpio_dvfs: regulator-gpio {
+		/*reg_gpio_dvfs: regulator-gpio {
 			compatible = "regulator-gpio";
 			regulator-min-microvolt = <1300000>;
 			regulator-max-microvolt = <1400000>;
@@ -66,10 +68,11 @@
 			regulator-type = "voltage";
 			gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
 			states = <1300000 0x1 1400000 0x0>;
-		};
+		};*/
 	};
 
-	sound {
+	sound {  status = "disabled";
+/*
 		compatible = "fsl,imx-audio-wm8731";
 		model = "wm8731-audio";
 		cpu-dai = <&sai2>;
@@ -78,7 +81,7 @@
 			"Headphone Jack",	"LHPOUT",
 			"Headphone Jack",	"RHPOUT",
 			"LLINEIN",		"Line Jack",
-			"RLINEIN",		"Line Jack";
+			"RLINEIN",		"Line Jack";*/
 	};
 
 	keys {
@@ -104,7 +107,7 @@
 &cpu0 {
 	arm-supply = <&reg_arm>;
 	soc-supply = <&reg_soc>;
-	dc-supply = <&reg_gpio_dvfs>;
+	/*dc-supply = <&reg_gpio_dvfs>;*/
 };
 
 &clks {
@@ -186,6 +189,8 @@
 };
 
 &lcdif {
+ status = "disabled";
+/*
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_lcdif_dat
 		     &pinctrl_lcdif_ctrl>;
@@ -214,7 +219,7 @@
 				pixelclk-active = <0>;
 			};
 		};
-	};
+	};*/
 };
 
 &pwm1 {
@@ -224,24 +229,28 @@
 };
 
 &pxp {
-	status = "okay";
+	/*status = "okay";*/
+ status = "disabled";
 };
 
 &sai2 {
+/*
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_sai2>;
 	assigned-clocks = <&clks IMX6UL_CLK_SAI2_SEL>,<&clks IMX6UL_CLK_SAI2>;
 	assigned-clock-parents = <&clks IMX6UL_CLK_PLL4_AUDIO_DIV>;
 	assigned-clock-rates = <0>, <11289600>;
-	status = "okay";
+	status = "okay";*/
+ status = "disabled";
 };
 
 &adc1 {
-	vref-supply = <&touch_3v3_regulator>;
-	status = "okay";
+	/*vref-supply = <&touch_3v3_regulator>;
+	status = "okay";*/
+ status = "disabled";
 };
 
-&tsc {
+&tsc {/*
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_tsc>;
 	xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
@@ -251,7 +260,8 @@
 	status = "disabled";
 #else
 	status = "okay";
-#endif
+#endif*/
+ status = "disabled";
 };
 
 /* Console UART */
@@ -319,7 +329,8 @@
 	no-3-3-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
-	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
+	non-removable;
+/*	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;*/
 	status = "okay";
 };
 #endif
@@ -476,7 +487,7 @@
 			>;
 		};
 
-		pinctrl_lcdif_dat: lcdifdatgrp {
+		/*pinctrl_lcdif_dat: lcdifdatgrp {
 			fsl,pins = <
 				MX6UL_PAD_LCD_DATA02__LCDIF_DATA02	0x79
 				MX6UL_PAD_LCD_DATA03__LCDIF_DATA03	0x79
@@ -504,7 +515,7 @@
 				MX6UL_PAD_LCD_CLK__LCDIF_CLK		0x79
 				MX6UL_PAD_LCD_ENABLE__LCDIF_ENABLE	0x79
 			>;
-		};
+		};*/
 
 		pinctrl_pwm1: pwm1grp {
 			fsl,pins = <
@@ -624,7 +635,7 @@
 			>;
 		};
 
-		pinctrl_tsc: tscgrp {
+		/*pinctrl_tsc: tscgrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
 				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0xb0
@@ -651,7 +662,7 @@
 				MX6UL_PAD_JTAG_TMS__CCM_CLKO1		0x17088
 			>;
 		};
-
+*/
 		pinctrl_wdog: wdoggrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO08__WDOG1_WDOG_B	0x78b0
