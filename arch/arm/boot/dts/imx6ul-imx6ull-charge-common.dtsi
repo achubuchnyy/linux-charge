@@ -24,12 +24,12 @@
 
 /*	backlight {
 		status = "disabled";
-	};*/
+	};
 
 	pxp_v4l2 {
 		 status = "disabled";
 	};
-
+*/
 	regulators {
 		compatible = "simple-bus";
 		#address-cells = <1>;
@@ -103,7 +103,7 @@
 	rmii_ref_clk: rmii_ref_clk_grp {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
-		clock-frequency = <50000000>;
+		clock-frequency = <25000000>;
 		clock-output-names = "rmii-ref";
 	};
 };
@@ -128,7 +128,7 @@
 
 		ethphy1: ethernet-phy@3 {
 			compatible = "ethernet-phy-ieee802.3-c22";
-			micrel,rmii-reference-clock-select-50-mhz;
+			micrel,rmii-reference-clock-select-25-mhz;
 			clocks = <&rmii_ref_clk>;
 			clock-names = "rmii-ref";
 			reg = <3>;
@@ -152,7 +152,7 @@
 
 		ethphy1: ethernet-phy@3 {
 			compatible = "ethernet-phy-ieee802.3-c22";
-			micrel,rmii-reference-clock-select-50-mhz;
+			micrel,rmii-reference-clock-select-25-mhz;
 			clocks = <&rmii_ref_clk>;
 			clock-names = "rmii-ref";
 			reg = <3>;
@@ -165,13 +165,13 @@
 	pinctrl-0 = <&pinctrl_flexcan1>;
 	status = "okay";
 };
-
+#ifdef CHARGE
 &flexcan2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_flexcan2>;
 	status = "okay";
 };
-
+#endif
 &gpc {
 	fsl,cpu_pupscr_sw2iso = <0x2>;
 	fsl,cpu_pupscr_sw = <0x1>;
@@ -189,9 +189,9 @@
 	pinctrl-0 = <&pinctrl_pwm1>;
 	status = "okay";
 };
-
+/*
 &pxp {
-	/*status = "okay";*/
+	
  status = "disabled";
 };
 
@@ -200,15 +200,14 @@
 };
 
 &adc1 {
-	/*vref-supply = <&touch_3v3_regulator>;
-	status = "okay";*/
+	
  status = "disabled";
 };
 
 &tsc {
  status = "disabled";
 };
-
+*/
 /* Console UART */
 &uart1 {
 	pinctrl-names = "default";
@@ -455,12 +454,12 @@
 			>;
 		};
 
-		pinctrl_flexcan2: flexcan2grp{
+		/*pinctrl_flexcan2: flexcan2grp{
 			fsl,pins = <
 				MX6UL_PAD_UART2_RTS_B__FLEXCAN2_RX	0x1b020
 				MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX	0x1b020
 			>;
-		};
+		};*/
 
 #endif
 		pinctrl_pwm1: pwm1grp {
