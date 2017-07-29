@@ -12,7 +12,7 @@
 /* #define  NAND  */
 
 /*#define  CHARGE*/
-#define  VAR
+#define  CHARGE
 / {
 	chosen {
 		stdout-path = &uart1;
