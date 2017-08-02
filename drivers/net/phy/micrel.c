@@ -563,28 +563,26 @@ static int kszphy_probe(struct phy_device *phydev)
 	if (!IS_ERR_OR_NULL(clk)) {
 		unsigned long rate = clk_get_rate(clk);
 		bool rmii_ref_clk_sel_25_mhz;
-		dev_err(&phydev->dev, "MY: ETHERNET Clock rate : %ld\n", rate);
+
 		priv->rmii_ref_clk_sel = type->has_rmii_ref_clk_sel;
-		rmii_ref_clk_sel_25_mhz = true;/*of_property_read_bool(np,
-				"micrel,rmii-reference-clock-select-25-mhz");*/
+		rmii_ref_clk_sel_25_mhz = of_property_read_bool(np,
+				"micrel,rmii-reference-clock-select-25-mhz");
 
 		if (rate > 24500000 && rate < 25500000) {
-			phydev->dev_flags |= MICREL_PHY_25MHZ_CLK;
 			priv->rmii_ref_clk_sel_val = rmii_ref_clk_sel_25_mhz;
 		} else if (rate > 49500000 && rate < 50500000) {
-			phydev->dev_flags |= MICREL_PHY_50MHZ_CLK;
 			priv->rmii_ref_clk_sel_val = !rmii_ref_clk_sel_25_mhz;
 		} else {
 			dev_err(&phydev->dev, "Clock rate out of range: %ld\n", rate);
 			return -EINVAL;
 		}
 	}
-	dev_err(&phydev->dev, "MY: ETHERNET Clock rate NOT SET\n");
-	/* Support legacy board-file configuration
-	if (phydev->dev_flags & MICREL_PHY_25MHZ_CLK) {
+
+	/* Support legacy board-file configuration */
+	if (phydev->dev_flags & MICREL_PHY_50MHZ_CLK) {
 		priv->rmii_ref_clk_sel = true;
 		priv->rmii_ref_clk_sel_val = true;
-	}*/
+	}
 
 	return 0;
 }

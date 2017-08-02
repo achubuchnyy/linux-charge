@@ -142,7 +142,7 @@
 	pinctrl-0 = <&pinctrl_enet2>;
 	phy-mode = "rmii";
 	phy-handle = <&ethphy1>;
-	phy-reset-gpios=<&gpio1 10 1>;
+	phy-reset-gpios=<&gpio2 5 1>;
 	phy-reset-duration=<100>;
 	phy-reset-on-resume;
 	status = "okay";
@@ -273,9 +273,9 @@
 	no-3-3-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
-	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-/*	non-removable;
-	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;*/
+/*	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
+	non-removable;*/
+	cd-gpios = <&gpio5 1 GPIO_ACTIVE_LOW>;
 	status = "okay";
 };
 #endif
@@ -501,8 +501,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 
-				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1 SD card detect */
+				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	*/ 
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	/*0x1b0b1 SD card detect */
 			>;
 		};
 
@@ -514,8 +514,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 /*SD card detect */
-				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1*/
+				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	*/ /*SD card detect */
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1
 			>;
 		};
 
@@ -527,8 +527,8 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 /*SD card detect */
-				/*MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1*/
+				/*MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	 *//*SD card detect */
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b1
 			>;
 		};
 #ifdef EMMC
