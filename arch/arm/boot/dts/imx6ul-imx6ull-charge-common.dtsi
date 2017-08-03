@@ -55,7 +55,7 @@
 	};
 
 
-	
+#ifdef WIFI	
 /*  Wi-Fi/BT SD Card Slot Definition */
 
 	/* define hook for BCMDHD driver.   */
@@ -71,6 +71,7 @@
 	btwilink {
 		compatible = "btwilink";
 };
+#endif
 };
 
 &cpu0 {
