@@ -244,7 +244,7 @@ force VMMC1 to always on so BT can operate independently of Wi-Fi */
 	assigned-clocks = <&clks IMX6UL_CLK_SAI2_SEL>,<&clks IMX6UL_CLK_SAI2>;
 	assigned-clock-parents = <&clks IMX6UL_CLK_PLL4_AUDIO_DIV>;
 	assigned-clock-rates = <0>, <11289600>;
-	status = "okay";
+	status = "disabled";
 };
 
 &adc1 {
@@ -306,23 +306,23 @@ force VMMC1 to always on so BT can operate independently of Wi-Fi */
 	disable-over-current;
 	status = "okay";
 };
+/*
 
-#ifdef WIFI
-/*  Wi-Fi/BT SD Card Slot Definition */
+
 &usdhc1 {
 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
 	pinctrl-0 = <&pinctrl_usdhc1>;
 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-	no-1-8-v;			/* removed by u-boot on DART-6UL-5G with Wi-Fi */
+	no-1-8-v;			
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
 	vmmc-supply = <&reg_sd1_vmmc>;
-	wifi-host;			/* add hook for SD card detect mechanism */
+	wifi-host;			
 	non-removable;
 	status = "okay";
 };
-#else
+*/
 &usdhc1 {
 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
 	pinctrl-0 = <&pinctrl_usdhc1>;
@@ -433,10 +433,10 @@ force VMMC1 to always on so BT can operate independently of Wi-Fi */
 
 	/* DS1307 RTC module */
 	rtc@0x68 {
-		/*compatible = "dallas,ds1307";
-		reg = <0x68>;*/
-		compatible = "isil,isl12057";
+		compatible = "dallas,ds1337";
 		reg = <0x68>;
+		/*compatible = "isil,isl12057";
+		reg = <0x68>;*/
 		interrupt-parent = <&gpio5>;
 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
 	};
