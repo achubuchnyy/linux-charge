@@ -348,7 +348,7 @@ force VMMC1 to always on so BT can operate independently of Wi-Fi */
 	non-removable;
 	status = "okay";
 };
-#endif
+
 
 #ifdef NAND
 &gpmi {
